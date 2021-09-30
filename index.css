@@ -1,17 +1,66 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 html {
     box-sizing: border-box;
+    scroll-behavior: smooth;
 }
 
 #navbar {
-
+    width: 100%;
+    position: fixed;
+    background-color:teal;
 }
 
-.nav-list {
+.nav-list { 
 display: flex;
 justify-content: flex-end;
 list-style-type: none;
+padding-right: 1rem;
+}
+.nav-list a {
+    color: white;
+    display: block;
+    text-decoration: none;
+    padding: 1rem;
+    font-size: xx-large;
 }
 
-a{
-    text-decoration: none;
+.nav-list a:hover {
+    background-color: turquoise;
+}
+
+#welcome-section {
+    background-color: thistle;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#projects {
+background-color: violet;
+    height: 50vh;
+    display: flex;
+    justify-content: center;
+}
+
+.projects-grid {
+    width: 1280px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.project-tile {
+    margin: 2rem;
+}
+
+#contact {
+    background-color: yellow;
+    height: 25vh;
+    display: flex;
+
 }
