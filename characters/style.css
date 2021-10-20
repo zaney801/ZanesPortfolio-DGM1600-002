@@ -1,8 +1,8 @@
 main {
-    display: flex;
-    flex-wrap: wrap;
-  }
-  
-  figure img {
-    width: 200px;
-  }
+  display: flex;
+  flex-wrap: wrap;
+}
+
+figure img {
+  width: 200px;
+}
