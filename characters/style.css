@@ -1,3 +1,5 @@
+/* old css */
+/*
 main {
   display: flex;
   flex-wrap: wrap;
@@ -5,4 +7,33 @@ main {
 
 figure img {
   width: 200px;
+}
+*/
+
+/* New scc */
+
+header {
+  background-color: blue;
+  color: #fff;
+}
+
+figure {
+  background-color: black;
+}
+
+img {
+  width: 200px;
+  border: 8px solid gold;
+}
+
+figcaption {
+  color: #fff;
+  text-align: center;
+  font-size: large;
+}
+
+main {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
