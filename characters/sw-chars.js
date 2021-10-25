@@ -29,8 +29,8 @@ femaleCharacters.forEach((element) => {
   main.appendChild(personFig);
 });
 
-// male characters add tomorrow
-/*
+// male characters self added
+
 maleCharacters.forEach((element) => {
   const personFig = document.createElement("figure");
   const personImg = document.createElement("img");
@@ -44,7 +44,7 @@ maleCharacters.forEach((element) => {
 
   main.appendChild(personFig);
 });
-*/
+
 function getLastNumber(url) {
   let end = url.lastIndexOf("/");
   let start = end - 2;
