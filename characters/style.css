@@ -30,6 +30,7 @@ main {
   flex-wrap: wrap;
   justify-content: center;
   background-color: #35748c;
+  padding: 2rem;
 }
 
 figure {
