@@ -3,7 +3,7 @@ import { getLastNumber, removeChildren } from "../utils/index.js";
 
 const main = document.querySelector("#main");
 
-const mainHeader = document.createElement("header");
+const mainHeader = document.createElement("nav");
 document.body.insertBefore(mainHeader, main);
 
 const allButton = document.createElement("button");

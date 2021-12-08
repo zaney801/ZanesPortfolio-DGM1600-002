@@ -1,20 +1,103 @@
 * {
   margin: 0;
+  padding: 0;
   box-sizing: border-box;
+}
+
+header {
+  display: flex;
+  justify-content: space-around;
+  background-color: #36bbd9;
+  padding: 1em 0;
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.4);
+  z-index: 10;
+}
+
+Header h1 {
+  color: #fff;
+  display: block;
+  font-size: xx-large;
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+}
+
+Nav{
+  background-color: #2c3a40;
+  display: flex;
+  justify-content: space-around;
+  padding: 1em 0;
+}
+
+button {
+  font-size: xx-large;
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  color: #fff;
+  background-color: #36bbd9;
+  border-radius: 10px;
+}
+
+button:hover {
+  background-color: #35748c;
+}
+
+main {
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  color: #fff;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  background-color: #35748c;
+  padding: 2rem;
+}
+
+main div {
+  display: flex;
+  justify-content: left;
+  font-size: large;
 }
 
 .senators {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
+  background-color: #35748c;
+  padding: 2rem;
 }
 
 figure {
-  width: 160px;
-  display: flex;
-  flex-direction: column;
-  margin: 1em;
+  background-color: #2c3a40;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  border-radius: 2px;
+  margin: 8px;
+}
+
+figure img {
+  width: 200px;
 }
 
 figcaption {
+  display: flex;
+  justify-content: center;
+  color: #fff;
+  font-family: "Lato", sans-serif;
+  font-weight: 300;
+  font-size: 1.5rem;
+  padding-bottom: 0.5rem;
+  width: 200px;
+}
+
+footer {
   text-align: center;
+  padding: 2rem;
+  font-size: x-large;
+  background-color: #2c3a40;
+  border-top: 4px solid #36bbd9;
+}
+
+footer h5 {
+  color: #fff;
+  font-family: "Lato", sans-serif;
+  font-weight: 300;
 }
