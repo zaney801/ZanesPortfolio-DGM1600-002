@@ -58,6 +58,7 @@ figure {
 .pokeGrid {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .scene {
@@ -92,8 +93,14 @@ figure {
 }
 
 .back {
-  background: mediumseagreen;
+  background: #36bbd9;
   transform: rotateY(180deg);
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  padding: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+
 }
 
 figure img {
@@ -105,4 +112,6 @@ figcaption {
   font-size: 130%;
   line-height: 3em;
   text-align: center;
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
 }

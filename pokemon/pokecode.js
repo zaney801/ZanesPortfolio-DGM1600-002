@@ -149,35 +149,59 @@ function typesBackground(pokemon, card) {
 function getPokeTypeColor(pokeType) {
   let color;
   switch (pokeType) {
-    case "grass":
-      color = "#00FF00";
-      break;
-    case "fire":
-      color = "#FF0000";
-      break;
-    case "water":
-      color = "#0000FF";
-      break;
     case "bug":
-      color = "#7FFF00";
+      color = "#629756";
       break;
-    case "normal":
-      color = "#F5F5DC";
+    case "dark":
+      color = "#595976";
       break;
-    case "flying":
-      color = "#00FFFF";
-      break;
-    case "poison":
-      color = "#C300FF";
+    case "dragon":
+      color = "#89C9D7";
       break;
     case "electric":
-      color = "#C8FF00";
+      color = "#F7F07A";
       break;
-    case "psychic":
-      color = "pink";
+    case "fairy":
+      color = "#C81A66";
+      break;
+    case "fighting":
+      color = "#D2623E";
+      break;
+    case "fire":
+      color = "#D64D59";
+      break;
+    case "flying":
+      color = "#9CB1C5";
+      break;
+    case "ghost":
+      color = "#85678E";
+      break;
+    case "grass":
+      color = "#79c95a";
       break;
     case "ground":
-      color = "brown";
+      color = "#654B27";
+      break;
+    case "ice":
+      color = "DEF0F9";
+      break;
+    case "normal":
+      color = "#BC96A4";
+      break;
+    case "poison":
+      color = "#8E69D6";
+      break;
+    case "psychic":
+      color = "#D5238E";
+      break;
+    case "rock":
+      color = "#7A4028";
+      break;
+    case "steel":
+      color = "#76BB95";
+      break;
+    case "water":
+      color = "#8FA6F8";
       break;
     default:
       color = "#888888";
