@@ -54,8 +54,7 @@ newButton.addEventListener("click", () => {
   );
   let newPokemon = new Pokemon(
     pokeName,
-    // Tring to add height
-    // getHeightArray(pokeHeight),
+    pokeHeight,
     pokeWeight,
     getAbilitiesArray(pokeAbilities),
     getTypesArray(pokeTypes)
@@ -198,7 +197,7 @@ function getPokeTypeColor(pokeType) {
       color = "#654B27";
       break;
     case "ice":
-      color = "DEF0F9";
+      color = "#DEF0F9";
       break;
     case "normal":
       color = "#BC96A4";
@@ -246,8 +245,8 @@ function populateCardBack(pokemon) {
     typesList.appendChild(typeItem);
   });
 */
-  // Tring to add height
-  /*
+// Tring to add height
+/*
   const heightList = document.createElement("ul");
   pokemon.height.forEach((pokeHeight) => {
   let heightItem = document.createElement("li");

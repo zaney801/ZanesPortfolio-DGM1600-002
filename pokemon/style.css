@@ -68,6 +68,7 @@ figure {
   perspective: 600px;
 }
 
+
 .card {
   width: 100%;
   height: 100%;
@@ -89,10 +90,13 @@ figure {
 }
 
 .front {
-  background: magenta;
   border: 5px;
   border-style: solid;
   border-color: #2c3a40;
+}
+
+.front:hover {
+  border-color: #36bbd9;
 }
 
 .back {
