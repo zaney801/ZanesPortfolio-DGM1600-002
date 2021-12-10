@@ -40,6 +40,27 @@ button:hover {
   background-color: #35748c;
 }
 
+select {
+  font-size: xx-large;
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  color: #fff;
+  text-align: center;
+  background-color: #36bbd9;
+  border-radius: 10px;
+}
+
+select:hover {
+  background-color: #35748c;
+}
+
+select .option {
+  font-size: medium;
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  color: #fff;
+}
+
 main {
   display: flex;
   flex-wrap: wrap;
@@ -67,7 +88,6 @@ figure {
   margin: 0.5em;
   perspective: 600px;
 }
-
 
 .card {
   width: 100%;
@@ -120,10 +140,19 @@ figure img {
 figcaption {
   text-transform: capitalize;
   font-size: 130%;
-  line-height: 3em;
   text-align: center;
   font-family: "Lato", sans-serif;
   font-weight: 400;
+}
+
+.id {
+  font-size: 130%;
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  display: flex;
+  justify-content: end;
+  padding: 0.25rem 0.5rem 0rem;
+  margin-bottom: -0.75rem;
 }
 
 div h4 {
@@ -141,7 +170,25 @@ div h3 {
   display: block;
   border-bottom: solid;
   border-width: 2px;
-  padding-bottom: 1rem;
+  padding-bottom: 0.25rem;
+}
+
+div h5 {
+  text-transform: capitalize;
+  font-size: medium;
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  display: flex;
+  justify-content: start;
+}
+
+div h2 {
+  text-transform: capitalize;
+  font-size: medium;
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  display: flex;
+  justify-content: end;
 }
 
 footer {

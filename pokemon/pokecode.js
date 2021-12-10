@@ -20,19 +20,56 @@ function loadPokemon(offset = 0, limit = 25) {
   });
 }
 
-loadPokemon(200, 25);
-
 const pokeGrid = document.querySelector(".pokeGrid");
 const loadButton = document.querySelector(".loadPokemon");
 loadButton.addEventListener("click", () => {
   removeChildren(pokeGrid);
-  loadPokemon(100, 50);
+  loadPokemon(0);
+  setTimeout(() => loadPokemon(25, 50), 3000);
 });
 
-/* First, get a reference to the pokemon choice button
-Second, add an event listener on click
-Third, use getAPIData with a URL like this https://pokeapi.co/api/v2/${promptedNameOrId}
-Fourth, populatePokeCard with the pokemon data retrieved */
+const allPokemon = await getAllSimplePokemon();
+
+async function getAllSimplePokemon() {
+  const allPokemon = [];
+  await getAPIData(
+    `https://pokeapi.co/api/v2/pokemon?limit=1118&offset=0`
+  ).then(async (data) => {
+    for (const pokemon of data.results) {
+      await getAPIData(pokemon.url).then((pokeData) => {
+        const mappedPokemon = {
+          abilities: pokeData.abilities,
+          height: pokeData.height,
+          id: pokeData.id,
+          name: pokeData.name,
+          types: pokeData.types,
+          weight: pokeData.weight,
+        };
+        allPokemon.push(mappedPokemon);
+      });
+    }
+  });
+  return allPokemon;
+}
+
+function getAllPokemonByType(type) {
+  return allPokemon.filter((pokemon) => pokemon.types[0].type.name == type);
+}
+
+const sortButton = document.querySelector(".sortButton");
+sortButton.addEventListener("click", () => {
+  const allByType = getAllPokemonByType("water");
+  removeChildren(pokeGrid);
+  allByType.forEach((item) => populatePokeCard(item));
+});
+
+const typeSelector = document.querySelector("#typeSelector");
+typeSelector.addEventListener("change", (event) => {
+  const usersTypeChoice = event.target.value.toLowerCase();
+  const allByType = getAllPokemonByType(usersTypeChoice);
+  removeChildren(pokeGrid);
+  allByType.forEach((item) => populatePokeCard(item));
+});
 
 const moreButton = document.querySelector(".morePokemon");
 moreButton.addEventListener("click", () => {
@@ -84,23 +121,9 @@ function getTypesArray(spacedString) {
   });
 }
 
-// Tring to add height
-/*
-function getHeightArray(commaString) {
-  let tempArray = commaString.split(",");
-  return tempArray.map((heightName) => {
-    return {
-      height: {
-        name: heightName,
-      },
-    };
-  });
-}
-*/
-
 class Pokemon {
   constructor(name, height, weight, abilities, types) {
-    (this.id = 100),
+    (this.id = 9001),
       (this.name = name),
       (this.height = height),
       (this.weight = weight),
@@ -130,13 +153,22 @@ function populatePokeCard(singlePokemon) {
 function populateCardFront(pokemon) {
   const pokeFront = document.createElement("figure");
   pokeFront.className = "cardFace front";
+
   const pokeImg = document.createElement("img");
-  pokeImg.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`;
+  if (pokemon.id === 9001) {
+    pokeImg.src = "../images/pokeball.png";
+  } else {
+    pokeImg.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`;
+  }
 
   const pokeCaption = document.createElement("figcaption");
-
-  //pokeCaption.textContent = `${pokemon.name[0].toUpperCase()}${pokemon.name.slice(1)}`
   pokeCaption.textContent = pokemon.name;
+
+  const pokeId = document.createElement("id");
+  pokeId.textContent = pokemon.id;
+  pokeId.className = "id";
+
+  pokeFront.appendChild(pokeId);
   pokeFront.appendChild(pokeImg);
   pokeFront.appendChild(pokeCaption);
 
@@ -223,46 +255,6 @@ function getPokeTypeColor(pokeType) {
   return color;
 }
 
-// Teacher Code
-/*
-function populateCardBack(pokemon) {
-  const pokeBack = document.createElement("div");
-  pokeBack.className = "cardFace back";
-  const label = document.createElement("h4");
-  label.textContent = "Abilities:";
-  pokeBack.appendChild(label);
-
-  const abilityList = document.createElement("ul");
-  pokemon.abilities.forEach((abilityItem) => {
-    let listItem = document.createElement("li");
-    listItem.textContent = abilityItem.ability.name;
-    abilityList.appendChild(listItem);
-  });
-  const typesList = document.createElement("ol");
-  pokemon.types.forEach((pokeType) => {
-    let typeItem = document.createElement("li");
-    typeItem.textContent = pokeType.type.name;
-    typesList.appendChild(typeItem);
-  });
-*/
-// Tring to add height
-/*
-  const heightList = document.createElement("ul");
-  pokemon.height.forEach((pokeHeight) => {
-  let heightItem = document.createElement("li");
-  heightItem.textContent = pokeHeight.height.name;
-  heightList.appendChild(heightItem);
-  });
-  */
-/*
-  pokeBack.appendChild(abilityList);
-  pokeBack.appendChild(typesList);
-  // Tring to add height
-  // pokeBack.appendChild(heightList);
-  return pokeBack;
-}
-*/
-
 function populateCardBack(pokemon) {
   const pokeBack = document.createElement("div");
   pokeBack.className = "cardFace back";
@@ -292,5 +284,20 @@ function populateCardBack(pokemon) {
 
   abilitieslabel.appendChild(abilityList);
   typelabel.appendChild(typesList);
+
+  if (pokemon.stats) {
+    const pokeHP = document.createElement("h2");
+    pokeHP.textContent = `HP: ${pokemon.stats[0].base_stat}`;
+
+    const pokeHeight = document.createElement("h5");
+    pokeHeight.textContent = `Height: ${pokemon.height}`;
+
+    const pokeWeight = document.createElement("h5");
+    pokeWeight.textContent = `Weight: ${pokemon.weight}`;
+
+    pokeBack.appendChild(pokeHeight);
+    pokeBack.appendChild(pokeWeight);
+    pokeBack.appendChild(pokeHP);
+  }
   return pokeBack;
 }
