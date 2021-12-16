@@ -202,8 +202,16 @@ footer {
   border-top: 4px solid #36bbd9;
 }
 
+footer a {
+  color: #fff;
+  font-family: "Lato", sans-serif;
+  font-weight: 300;
+  text-decoration: none;
+}
+
 footer h5 {
   color: #fff;
   font-family: "Lato", sans-serif;
   font-weight: 300;
+  text-decoration: none;
 }
