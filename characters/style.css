@@ -3,6 +3,10 @@
   padding: 0;
   box-sizing: border-box;
 }
+html {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
 
 header {
   display: flex;
@@ -21,7 +25,7 @@ Header h1 {
   font-weight: 400;
 }
 
-Nav{
+Nav {
   background-color: #2c3a40;
   display: flex;
   justify-content: space-around;

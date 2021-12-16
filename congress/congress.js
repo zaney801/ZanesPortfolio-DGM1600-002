@@ -1,7 +1,8 @@
 import { senators } from "../data/senators.js";
 import { representatives } from "../data/representatives.js";
+import { removeChildren } from "../utils/index.js";
 
-const members = [...senators, ...representatives]; // modern combining arrays like a genus
+const members = [...senators, ...representatives]; // modern combining arrays like a genus ;)
 
 const senatorDiv = document.querySelector(".senators");
 const seniorityHeading = document.querySelector(".seniority");
@@ -12,17 +13,17 @@ function simplifiedMembers(chamberFilter) {
     chamberFilter ? member.short_title === chamberFilter : member
   );
 
-  return filteredArray.map((senator) => {
-    const middleName = senator.middle_name ? ` ${senator.middle_name} ` : ` `;
+  return filteredArray.map((item) => {
+    const middleName = item.middle_name ? ` ${item.middle_name} ` : ` `;
     return {
-      id: senator.id,
-      name: `${senator.first_name}${middleName}${senator.last_name}`,
-      party: senator.party,
-      imgURL: `https://www.govtrack.us/static/legislator-photos/${senator.govtrack_id}-100px.jpeg`,
-      gender: senator.gender,
-      seniority: +senator.seniority,
-      missedVotesPct: senator.missed_votes_pct,
-      loyaltyPct: senator.votes_with_party_pct,
+      id: item.id,
+      name: `${item.first_name}${middleName}${item.last_name}`,
+      party: item.party,
+      imgURL: `https://www.govtrack.us/static/legislator-photos/${item.govtrack_id}-100px.jpeg`,
+      gender: item.gender,
+      seniority: +item.seniority,
+      missedVotesPct: item.missed_votes_pct,
+      loyaltyPct: item.votes_with_party_pct,
     };
   });
 }
@@ -30,51 +31,103 @@ function simplifiedMembers(chamberFilter) {
 populateSenatorDiv(simplifiedMembers());
 
 function populateSenatorDiv(simpleSenators) {
-  simpleSenators.forEach((senator) => {
-    let senFigure = document.createElement("figure");
+  removeChildren(senatorDiv);
+  simpleSenators.forEach((item) => {
+    let itemFigure = document.createElement("figure");
     let figImg = document.createElement("img");
     let figCaption = document.createElement("figcaption");
 
-    figImg.src = senator.imgURL;
+    if (item.party === "R") itemFigure.style.borderColor = "Red";
+    if (item.party === "D") itemFigure.style.borderColor = "Blue";
 
-    figCaption.textContent = senator.name;
-    senFigure.appendChild(figImg);
-    senFigure.appendChild(figCaption);
-    senatorDiv.appendChild(senFigure);
+    figImg.src = item.imgURL;
+
+    figCaption.textContent = item.name;
+    itemFigure.appendChild(figImg);
+    itemFigure.appendChild(figCaption);
+    senatorDiv.appendChild(itemFigure);
   });
 }
 
-//const filterSenators = (prop, value) => simplifiedSenators().filter(senator => senator[prop] === value)
+//const filterSenators = (prop, value) =>
+//simplifiedMembers(item).filter((item) => item[prop] === value);
 
-//const republicans = filterSenators('party', 'R')
-//const femaleSenators = filterSenators('gender', 'F')
+//const republicans = filterSenators("party", "R");
+//const femaleSenators = filterSenators("gender", "F");
 
-//console.log(republicans, femaleSenators)
+//Buttons go bellow
 
-const mostSeniorMember = simplifiedMembers().reduce((acc, senator) => {
-  return acc.seniority > senator.seniority ? acc : senator;
+//All Button!!! it actualy worked lol
+
+const allSenatorsButton = document.querySelector(".SenatorsButton");
+allSenatorsButton.addEventListener("click", () => {
+  const allMembers = simplifiedMembers().filter((member) => member);
+  populateSenatorDiv(allMembers);
+});
+
+//republicans Button!!!
+
+const repSortrepublicansButton = document.querySelector(".republicansButton");
+repSortrepublicansButton.addEventListener("click", () => {
+  const republicansMembers = simplifiedMembers().filter(
+    (member) => member.party === "R"
+  );
+  populateSenatorDiv(republicansMembers);
+});
+
+//Democrats Button!!!
+
+const demSortdemocratsButton = document.querySelector(".democratsButton");
+demSortdemocratsButton.addEventListener("click", () => {
+  const democrastsMembers = simplifiedMembers().filter(
+    (member) => member.party === "D"
+  );
+  populateSenatorDiv(democrastsMembers);
+});
+
+//Male Button!!!
+
+const malSortMaleButton = document.querySelector(".maleButton");
+malSortMaleButton.addEventListener("click", () => {
+  const maleMembers = simplifiedMembers().filter(
+    (member) => member.gender === "M"
+  );
+  populateSenatorDiv(maleMembers);
+});
+
+//Female Button!!!
+
+const femSortfemaleButton = document.querySelector(".femaleButton");
+femSortfemaleButton.addEventListener("click", () => {
+  const femaleMembers = simplifiedMembers().filter(
+    (member) => member.gender === "F"
+  );
+  populateSenatorDiv(femaleMembers);
+});
+
+//space so i can think clear on buttons
+
+const mostSeniorMember = simplifiedMembers().reduce((acc, item) => {
+  return acc.seniority > item.seniority ? acc : item;
 });
 
 seniorityHeading.textContent = `The most senior member of Congress is ${mostSeniorMember.name} who has taken our tax dollars as salary for more than ${mostSeniorMember.seniority} years!`;
 
-const mostLoyal = simplifiedMembers().reduce((acc, senator) => {
-  if (senator.loyaltyPct === 100) {
-    acc.push(senator);
+const mostLoyal = simplifiedMembers().reduce((acc, item) => {
+  if (item.loyaltyPct === 100) {
+    acc.push(item);
   }
   return acc;
 }, []);
 
 const biggestWeasel = simplifiedMembers().reduce(
-  (acc, senator) =>
-    (acc.missedVotesPct || 0) > senator.missedVotesPct ? acc : senator,
+  (acc, item) => ((acc.missedVotesPct || 0) > item.missedVotesPct ? acc : item),
   {}
 );
 
 const biggestWeasels = simplifiedMembers().filter(
-  (senator) => senator.missedVotesPct >= 50
+  (item) => item.missedVotesPct >= 50
 );
-
-console.log(biggestWeasels);
 
 biggestWeasels.forEach((weasel) => {
   let listItem = document.createElement("li");

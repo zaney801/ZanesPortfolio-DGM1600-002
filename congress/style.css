@@ -3,6 +3,15 @@
   padding: 0;
   box-sizing: border-box;
 }
+html {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+li {
+  text-decoration: none;
+  list-style: none;
+}
 
 header {
   display: flex;
@@ -21,7 +30,7 @@ Header h1 {
   font-weight: 400;
 }
 
-Nav{
+Nav {
   background-color: #2c3a40;
   display: flex;
   justify-content: space-around;
@@ -35,6 +44,7 @@ button {
   color: #fff;
   background-color: #36bbd9;
   border-radius: 10px;
+  padding: 0px 10px 0px 10px;
 }
 
 button:hover {
@@ -42,20 +52,23 @@ button:hover {
 }
 
 main {
+  text-align: center;
   font-family: "Lato", sans-serif;
   font-weight: 400;
   color: #fff;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
   background-color: #35748c;
   padding: 2rem;
 }
 
-main div {
-  display: flex;
-  justify-content: left;
-  font-size: large;
+.weasel {
+  text-align: center;
+  padding-top: 2rem;
+}
+
+.weaselList {
+  padding-top: 0.5rem;
+  text-align: center;
+  padding-left: 1.5rem;
 }
 
 .senators {
@@ -71,6 +84,7 @@ figure {
   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
   border-radius: 2px;
   margin: 8px;
+  border: solid 1.5px;
 }
 
 figure img {
